@@ -43,8 +43,8 @@ echo $sql1;
 */
 
 //CREATE TABLE `COP4331`.`Username`ContactTable ( `Name` VARCHAR (30), `Email` VARCHAR (30), `PhoneNumber` VARCHAR (30), `DateCreated` DATETIME);
-//CREATE TABLE testtable (FirstName VARCHAR (30), LastName VARCHAR(30), Email VARCHAR (30), PhoneNumber VARCHAR (30), DateCreated DATETIME);
-$sql2 = 'CREATE TABLE '.$data->email.' (FirstName VARCHAR (30), LastName VARCHAR(30), Email VARCHAR (30), PhoneNumber VARCHAR (30), DateCreated DATETIME)';
+//CREATE TABLE testtable1 (FirstName VARCHAR (30), LastName VARCHAR(30), Email VARCHAR (30), PhoneNumber VARCHAR (30), DateCreated DATETIME);
+$sql2 = 'CREATE TABLE `'.$data->email.'` (FirstName VARCHAR (30), LastName VARCHAR(30), Email VARCHAR (30), PhoneNumber VARCHAR (30), DateCreated DATETIME)';
 echo "sql2 text";
 echo $sql2;
 
