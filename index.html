@@ -4,67 +4,29 @@
         <meta charset="UTF-8">
         <meta htp-equiv="X-UA-Compatible" content="IE=edge">
         <title>LAMP Project</title>
-        <!-- References to stylesheets -->
-        <!--
-            Notes:
-            To save future Marc's explanation, basically, his contact.html uses some bootstrap
-            elements, so it has to reference the bootstrap.css
-            However, that actually messes with Santiago's html that he worked on (index and register)
-            Actually, nothing in Santiago's work uses bootstrap elements so realistically there
-            is no point in referencing the bootstrap.css in the index and register.html
-            However, when trying to style it the same way in contact.html
-            referencing the bootstrap.css, for some reason, it just doesn't work the same
-            (If group asks for example, inspect the html elements)
-            I've attempted to search for workarounds, but nothing was found
-
-            Update, one of things that bothered me, I found a really simple solution
-            and now I'm upset
-
-            As for the IDs for each of the elements, go over with Alex on naming convention
-        -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link href="css/style.css" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/cb3f2f652b.js" crossorigin="anonymous"></script>
+        <script defer src="./js/login.js"></script>
     </head>
 
     <body>
         <h1><center><strong>CONTACT MANAGER</strong></center></h1>
-        <ul>
-            <!-- 
-                Some notes here:
-                Contacts will most likely be deleted as it doesn't seem logical
-                to have the user access it when they aren't logged in.
-                It is there solely for viewing it from the main menu
-            -->
-            <li><a class="active" href="index.html">Login</a></li>
-            <li><a href="register.html">Register</a></li>
-            <li><a href="contacts.html">Contacts</a></li>
-        </ul>
-
-        <!--
-            Originally, form was being used here, however
-            <input type="submit"> actually can directly send stuff to the server
-            Not sure how that will work, might just be easier to have a button that calls
-            the JS function
-            (atleast from what I read, its like 6am cut me some slack future Marc)
-        -->
         <div class="boxlogin">
-            <h2>Log In</h2>
-
-            <label for="username">Username:</label><br>
-            <input type="text" id="username"><br>
-
-            <label for="password">Password:</label><br>
-            <input type="password" id="password"><br>
-            
-            <!-- 
-                Add JS function to this button to log the user in 
-            -->
-            <button type="button" class="buttonsubmit" onclick="">Log In</button>
+            <form id="form" action="/">
+                <h1>Login</h1>
+                <div class="input-control">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="text">
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
+                    <label for="password">Password</label>
+                    <input id="password"name="password" type="password">
+                    <div class="error"></div>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
             <label>If you don't have an account <a href="register.html" style="color:whitesmoke;">Click here</a></label>
         </div>
     </body>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/code.js"></script>
-</html>

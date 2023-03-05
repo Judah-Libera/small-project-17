@@ -43,7 +43,7 @@ if($result2 = mysqli_query($conn, $sql)){
     $ContactEmail = $ContactRow["ContactEmail"];
     
     
-    $return['Contact'][] = array('FName' => $FName, 'LName' => $LName, 'UserEmail' => $UserEmail, 'ContactID' => $ContactID, 'PhoneNumber' => $PhoneNumber, 'ContactEmail' => $ContactEmail,);
+    $return[] = array('FName' => $FName, 'LName' => $LName, 'UserEmail' => $UserEmail, 'ContactID' => $ContactID, 'PhoneNumber' => $PhoneNumber, 'ContactEmail' => $ContactEmail,);
   }
 }else{
   http_response_code(409);
@@ -52,7 +52,7 @@ if($result2 = mysqli_query($conn, $sql)){
 
 
 //If all that works then...
-header("Content-Type:text/html");
+header("Content-Type:application/json");
 http_response_code(201);
 echo json_encode($return);
 

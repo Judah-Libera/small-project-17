@@ -1,133 +1,37 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta htp-equiv="X-UA-Compatible" content="IE=edge">
-        <title>LAMP Project</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>LAMP Project</title>
+     
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    <body>
-        <!-- 
-            The section below is for the modals, documentation of it can be found
-            on the bootstrap website
-        -->
-        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content modalboxoverride">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="editModalLabel">Edit Contact</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body boxmodal">
-                  <label class="modallabel">Name: </label><br>
-                  <input type="text" id="editName" placeholder="Enter name" required><br>
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/test.css">
 
-                  <label class="modallabel">Email: </label><br>
-                  <input type="text" id="editEmail" placeholder="Enter email" required><br>
-                  
-                  <label class="modallabel">Phone Number: </label><br>
-                  <input type="text" id="editPhoneNumber" placeholder="Enter phone number" required><br>
-                </div>
-                <div class="modal-footer">
-                  <center>
-                    <button type="button" class="buttonclose" data-bs-dismiss="modal" style="margin-bottom: 10px;">Close</button>
-                    <!-- 
-                        Add JS function to this button to edit contact in table
-                    -->
-                    <button type="button" class="buttonsubmit" data-bs-dismiss="modal" style="margin-top: 10px; width: 100px;" onclick="">Submit</button>
-                  </center>
-                </div>
-              </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content modalboxoverride">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="deleteModalLabel">Delete Contact</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body boxmodal">
-                  <label style="font-size: 25px;"><strong>Are you sure you want to delete this contact?</strong></label>
-                </div>
-                <div class="modal-footer">
-                  <center>
-                    <button type="button" class="buttonclose" data-bs-dismiss="modal" style="margin-top: 10px;">Close</button>
-                    <!-- 
-                        Add JS function to this button to delete contact in table
-                    -->
-                    <button type="button" class="buttondelete" data-bs-dismiss="modal" style="padding: 10px;" onclick="">Delete</button>
-                  </center>
-                </div>
-              </div>
-            </div>
-        </div>
-
-
-
-        <h1><center><strong>CONTACT MANAGER</strong></center></h1>
-        <ul>
+   <!-- custom js file link  -->
+   <script src="js/contacts.js" defer></script>
+   <h1 id="title;">CONTACT MANAGER</h1>
+</head>
+<body>
+        <p id="greeting"></p>
+      <form>
+        <box>
+            <h2>Search for Contacts</h2>
             <center>
-                <li><a class="active" href="contacts.html">Contacts</a></li>
-                <li><a href="newContact.html">Add New Contact</a></li>
-                <!-- 
-                    Add JS function to this button to log the user out
-                -->
-              <li><button class="buttonlogout" onclick="">Logout</button></li>
-            </center>
-        </ul>
+                <input type="text" id="searchBar" style="width: 500px" onkeyup="search(this.value);" placeholder="Enter contact to search">
+                
+            </center> 
+            <p id="noContacts"></p>
+            <div class="container"></div>
+            <div class="contacts-preview"></div>
+            <div class="popup-container"></div>
+        </box>
+      </form>
 
-        <div class="boxcontact">
-            <center>
-                <label style="font-size: 40px"><strong>Search:</strong></label><br>
-                <input type="text" id="searchBar" style="width: 500px" placeholder="Enter contact to search"></br>
-                <!-- 
-                    Add JS function to this button to search for specified contact
-                -->
-                <button class="button buttonsubmit" style="margin-bottom: 20px;" onclick="">Search</button>
-                <table>
-                    <tr class='trhead'>
-                      <th class="thhead">Name</th>
-                      <th class="thhead">Email</th>
-                      <th class="thhead">Phone Number</th>
-                      <th class="thhead">Date Created</th>
-                      <th class="thhead">Options</th>
-                    </tr>
-        
-                    <!-- Test of what an entry within the contact will look like -->
-                    <tr>
-                      <th class="thbody">Test Name</th>
-                      <th class="thbody">Test Email</th>
-                      <th class="thbody">Test Phone Number</th>
-                      <th class="thbody">Test Date Created</th>
-                      <th class="thbody">
-                        <div class="dropdown">
-                          <button class="button dropdown-toggle buttonoptions" type="button" id="options" data-bs-toggle="dropdown" aria-expanded="false">
-                            Options
-                          </button>
-                          <ul class="dropdown-menu" aria-labelledby="options" style="width: 180px">
-                            <center>
-                              <li>
-                                <button class="button buttonedit" data-bs-toggle="modal" data-bs-target="#editModal" type="button" style="margin-left: 20px;" onclick="">Edit</button> <!-- Add JS function that will prompt the user to change elements of that contact list -->
-                              </li>
-                              <li>
-                                <button class="button buttondelete" data-bs-toggle="modal" data-bs-target="#deleteModal" type="button" style="margin-left: 15px;" onclick="">Delete</button> <!-- Add JS function that will prompt the user to delete that user from the list -->
-                              </li>
-                            </center>
-                          </ul>
-                        </div>
-                      </th>
-                    </tr>
-    
-                  </table>
-            </center>
-        </div>
-    </body>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/code.js"></script>
+</body>
 </html>

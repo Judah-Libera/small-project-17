@@ -22,6 +22,7 @@ $ask = 'SELECT * FROM Users WHERE Login="'. $data->email .'"';
 if($result = mysqli_query($conn, $ask)){
   if(mysqli_num_rows($result) > 0)
   {
+    http_response_code(409);
 	  die("Email in use");
   }
 }
@@ -30,18 +31,19 @@ mysqli_free_result($result);
 //the sql line to be executed by the data base. it needs to be sent as a string, but since the line has variable data in it theres a lot of string concatenation to make it work
 //concatenation is done using . and strings are marked by '' instead of "" so we don't have to worry about escape characters. i.e. 'hello' . 'world'
 $sql = 'INSERT INTO Users (FirstName, LastName, Login, Password) VALUES ("'. $data->fName . '","' . $data->lName . '","' . $data->email . '","' . $data->password . '")';
-echo "sql text";
-echo $sql;
+//echo "sql text";
+//echo $sql;
 
 //CREATE TABLE `COP4331`.`Username`ContactTable ( `Name` VARCHAR (30), `Email` VARCHAR (30), `PhoneNumber` VARCHAR (30), `DateCreated` DATETIME);
 //CREATE TABLE testtable1 (FirstName VARCHAR (30), LastName VARCHAR(30), Email VARCHAR (30), PhoneNumber VARCHAR (30), DateCreated DATETIME);
 $sql1 = 'CREATE TABLE `'.$data->email.'` (FirstName VARCHAR (30), LastName VARCHAR(30), Email VARCHAR (30), PhoneNumber VARCHAR (30), DateCreated DATETIME)';
-echo "sql2 text";
-echo $sql2;
+//echo "sql2 text";
+//echo $sql2;
 
 //sends the sql line to the database to be executed
 if (mysqli_query($conn, $sql) && mysqli_query($conn, $sql1)) {
   echo "Record updated successfully";
+  http_response_code(201);
 } else {
   echo "Error updating record";
 }
