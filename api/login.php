@@ -9,6 +9,7 @@ if (!$conn) {
   die("Connection failed: ");
 }
 $user = $data->email;
+$jspass = $data->password;
 //$ask = 'SELECT * FROM Users where Login = "hi.com"';
 $ask = 'SELECT * FROM Users where Login = "' . $user . '"'; 
 //print_r($user);
@@ -31,7 +32,12 @@ else{ //if user is found
   $userP = $database[0];
   $login = $userP['Login'];
   $pass = $userP['Password'];
-
+  if ($jspass == $pass)
+  {
+    $update = 'update Users set DateLastLoggedIn = CURRENT_TIMESTAMP where Login = "' . $user . '"';
+    $loggedin = mysqli_query($conn, $update);
+  }
+  
   //print_r($userP['Login']);
   //print_r($userP['Password']);
 

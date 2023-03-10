@@ -5,6 +5,7 @@ const email = document.getElementById('email');
 const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
 let flag = true;
+let flag_inuse = false;
 
 form.addEventListener('submit', e => {
     e.preventDefault();
@@ -15,6 +16,7 @@ form.addEventListener('submit', e => {
 
 function sendRegister()
 {
+    let flag_inuse = false;
     let url = '../API' + '/CreateUser' + '.php';  // DEFINE URL
     let dict = {
                 "fName": fname.value,
@@ -29,14 +31,21 @@ function sendRegister()
         })
         .then(res => {
             if(res.ok) res.json()
-            else if(res.status == 400){ //TODO CHANGE THIS SHIT TO ACCOMADATE ALL ERRORS
+            else if(res.status == 400){ //TODO CHANGE THIS  TO ACCOMADATE ALL ERRORS
                 setError(email.parentElement, "FIX THIS MESSAGE");
                 setError(password.parentElement, "FIX THIS MESSAGE");
             }
+            else if(res.status == 409){
+                document.getElementById("UEE").style.visibility = "visible";
+                setError(email, "Email in use.");
+                flag_inuse = true;
+                return;
+            }
         })
         .then(data => {
-            console.log(data);
-            window.alert("Successfully created user");  
+            if(flag_inuse == true)
+              return;
+            //console.log(data); 
             window.location.href ="index.html";  // TODO point to correct file
             })
         .catch(error => {
@@ -75,38 +84,55 @@ const validateInputs = () => {
     const passwordValue = password.value.trim();
     const password2Value = password2.value.trim();
 
+    document.getElementById("FNE").style.visibility = "hidden";
+    document.getElementById("LNE").style.visibility = "hidden";
+    document.getElementById("UEE").style.visibility = "hidden";
+    document.getElementById("PE").style.visibility  = "hidden";
+    document.getElementById("PCE").style.visibility = "hidden";
+    
     if(fnameValue === '') {
         setError(fname, 'First name is required');
+        document.getElementById("FNE").style.visibility = "visible";
     } else {
+        document.getElementById("FNE").style.visibility = "hidden";
         setSuccess(fname);
     }
 
     if(lnameValue === '') {
         setError(lname, 'Last name is required');
+        document.getElementById("LNE").style.visibility = "visible";
     } else {
         setSuccess(lname);
     }
 
     if(emailValue === '') {
         setError(email, 'Email is required');
+        document.getElementById("UEE").style.visibility = "visible";
     } else if (!isValidEmail(emailValue)) {
         setError(email, 'Provide a valid email address');
+        document.getElementById("UEE").style.visibility = "visible";
     } else {
         setSuccess(email);
     }
 
     if(passwordValue === '') {
         setError(password, 'Password is required');
+        document.getElementById("PE").style.visibility = "visible";
     } else if (passwordValue.length < 8 ) {
         setError(password, 'Password must be at least 8 character.')
+        document.getElementById("PE").style.visibility = "visible";
     } else {
         setSuccess(password);
     }
 
     if(password2Value === '') {
         setError(password2, 'Please confirm your password');
+        document.getElementById("PCE").style.visibility = "visible";
     } else if (password2Value !== passwordValue) {
+        setError(password, "");
         setError(password2, "Passwords doesn't match");
+        document.getElementById("PE").style.visibility = "visible";
+        document.getElementById("PCE").style.visibility = "visible";
     } else {
         setSuccess(password2);
     }

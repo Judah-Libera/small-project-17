@@ -302,3 +302,18 @@ table {
 .input-control.error input {
     border-color: #ff3860;
 }
+
+.iconlogin {
+  font-size:35px;
+  color:red;
+  position: relative;  
+  float:right;
+  left:45px;
+  top:-65px;
+  display:inline-block;
+  background-color:white;
+  border-radius:100%;
+  border-style: solid;
+  border-color: white;
+  visibility:hidden;
+}

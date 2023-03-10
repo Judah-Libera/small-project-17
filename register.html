@@ -5,44 +5,50 @@
         <meta htp-equiv="X-UA-Compatible" content="IE=edge">
         <title>LAMP Project</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link href="css/style.css" rel="stylesheet">
+        <link href="css/stylecombined.css" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="/images/icon.png">
         <script src="https://kit.fontawesome.com/cb3f2f652b.js" crossorigin="anonymous"></script>
         <script defer src="./js/register.js"></script>
     </head>
 
     <body>
-        <h1><center><strong>CONTACT MANAGER</strong></center></h1>
+        <img src="images/icon.png" style="margin-left: auto; margin-right: auto; display: block;" width="100" height="100">
+        <h1><center><strong>MOUNTAINTOP CONTACT MANAGER</strong></center></h1>
         <div class="boxlogin">
             <form id="form" action="/">
                 <h1>Registration</h1>
                 <div class="input-control">
-                    <label for="fname">First Name</label>
-                    <input id="fname" name="fname" type="text">
-                    <div class="error"></div>
+                    <label for="fname" class = "loginlabels">First Name</label>
+                    <input id="fname" name="fname" type="text" placeholder="Enter first name here">
+                    <i class="fa fa-times-circle iconlogin" style="visibility: hidden;" id = "FNE"></i>
+                    <div class="error" style="color: red"></div>
                 </div>
                 <div class="input-control">
-                    <label for="Last Name">Last Name</label>
-                    <input id="lname" name="lname" type="text">
-                    <div class="error"></div>
+                    <label for="Last Name" class = "loginlabels">Last Name</label>
+                    <input id="lname" name="lname" type="text" placeholder="Enter last name here">
+                    <i class="fa fa-times-circle iconlogin" style="visibility: hidden;" id = "LNE"></i>
+                    <div class="error" style="color: red; "></div>
                 </div>
                 <div class="input-control">
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="text">
-                    <div class="error"></div>
+                    <label for="email" class = "loginlabels">Email</label>
+                      <input id="email" name="email" type="text" placeholder="Enter email here">
+                      <i class="fa fa-times-circle iconlogin" style="visibility: hidden;" id = "UEE"></i>
+                    <div class="error" style="color: red"></div>
                 </div>
                 <div class="input-control">
-                    <label for="password">Password</label>
-                    <input id="password"name="password" type="password">
-                    <div class="error"></div>
+                    <label for="password" class = "loginlabels">Password</label>
+                    <input id="password"name="password" type="password" placeholder="Enter password here">
+                    <i class="fa fa-times-circle iconlogin" style="visibility: hidden;" id = "PE"></i>
+                    <div class="error" style="color: red"></div>
                 </div>
                 <div class="input-control">
-                    <label for="password2">Confirm Password</label>
-                    <input id="password2"name="password2" type="password">
-                    <div class="error">
-                        <i class="fa-solid fa-circle-exclamation"></i>
+                    <label for="password2" class = "loginlabels">Confirm Password</label>
+                    <input id="password2"name="password2" type="password" placeholder="Reenter password here">
+                    <i class="fa fa-times-circle iconlogin" style="visibility: hidden;" id = "PCE"></i>
+                    <div class="error" style="color: red">
                     </div>
                 </div>
-                <button type="submit">Sign Up</button>
+                <button type="submit" class="buttonsubmit">Sign Up</button>
             </form>
             <label>If you have an account <a href="index.html" style="color:whitesmoke">Click here</a></label>
         </div>

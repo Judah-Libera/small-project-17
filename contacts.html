@@ -11,27 +11,66 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/test.css">
-
+   <link rel="stylesheet" href="css/stylecombined.css">
+  
+   <link rel="icon" type="image/x-icon" href="/images/icon.png">
    <!-- custom js file link  -->
    <script src="js/contacts.js" defer></script>
-   <h1 id="title;">CONTACT MANAGER</h1>
+   
 </head>
+<div style="position: relative; margin: auto; width: 800px; padding: 10px;">
+  <img src="images/icon.png" style="margin-left: auto; margin-right: auto; display: block;" width="100" height="100">
+  <h1><strong>MOUNTAINTOP CONTACT MANAGER</strong></h1>
+  <p id="greeting" class = "greeting"></p>
+  <center>
+    <button class="buttonlogout" onclick="deleteCookie();">Logout</button>
+  </center>
+</div>
+
 <body>
-        <p id="greeting"></p>
-      <form>
+  
+
+      <form class="contactform">
         <box>
             <h2>Search for Contacts</h2>
             <center>
                 <input type="text" id="searchBar" style="width: 500px" onkeyup="search(this.value);" placeholder="Enter contact to search">
+                <i class='fas fa-plus iconplus' onclick = "showAddContact();" ></i>
                 
             </center> 
-            <p id="noContacts"></p>
+            <p id="noContacts" class="noContacts"></p>
             <div class="container"></div>
             <div class="contacts-preview"></div>
             <div class="popup-container"></div>
         </box>
       </form>
+      
+      <center>
+      <div class = "modal-preview" id = "addPreview">
+      <div class = "modal" id = "add">
+      <h3> Add New Contact</h3>
+          <div class = "modalbody">
+          <button type = "button" onclick = "hideAddContact();" style ="background-color:transparent; position:absolute; top:1rem; right:1.5rem;"><i class='fas fa-times deleteAdd' style ='font-size:4rem;'></i></button>
+          <label style = "color: white; font-size: 2.5rem; font-weight: bold;">First Name: </label><br>
+                <div class = "addinput"><input type="text" id="addFName" placeholder="Enter first name" style = ""><i class="fa fa-times-circle iconadd" id = "FNE"></i></div><br>
+                
+                <label class = "addtext">Last Name: </label><br>
+                <div class = "addinput"><input type="text" id="addLName" placeholder="Enter last name" style = ""><i class="fa fa-times-circle iconadd" id = "LNE"></i></div><br>
+
+                <label class = "addtext">Email: </label><br>
+                <div class = "addinput"><input type="text" id="addEmail" placeholder="Enter email" style = ""><i class="fa fa-times-circle iconadd" id = "CEE"></i></div><br>
+
+                <label class = "addtext">Phone Number: </label><br>
+                <div class = "addinput"><input type="text" id="addPhoneNumber" placeholder="Enter phone number" style = ""><i class="fa fa-times-circle iconadd" id = "PNE"></i></div><br>
+                
+                <p id="warningtext" style="margin:0px; color:#ff6060;  font-size:220%;"></p>;
+
+                <center><button type="button" class="buttonadd" onclick="addContact();"> Add Contact </button></center> 
+          </div>
+        </div>
+        </div>
+      </center>
+
 
 </body>
 </html>
